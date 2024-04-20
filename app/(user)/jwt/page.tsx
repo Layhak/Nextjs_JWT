@@ -45,7 +45,7 @@ export default function JWT() {
         })
     }
     const handleRefreshToken = async () => {
-        fetch(`${process.env.NEXT_PUBLIC_DJANGO_API_URL}/api/token/refresh`,
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/refresh`,
             {
                 method: 'POST',
                 credentials: 'include',
@@ -53,6 +53,7 @@ export default function JWT() {
             },
         ).then(response => response.json()).then(data => {
             toast.success('Refresh Successfully')
+            setAccessToken(data.accessToken)
             console.log('Data in refresh token', data)
         }).then(error => {
             console.log('error:', error)

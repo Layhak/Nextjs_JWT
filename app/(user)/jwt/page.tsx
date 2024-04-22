@@ -19,10 +19,10 @@ export default function JWT() {
         }).then(response => response.json()).then(data => {
             setAccessToken(data.accessToken)
             toast.success('Login Successfully')
-            console.log('Data in jwt test', data)
+            // console.log('Data in jwt test', data)
         }).catch(error => {
             toast.error('Login fail')
-            console.log(error)
+            // console.log(error)
         })
     }
     const handlePartialUpdate = async () => {
@@ -58,7 +58,18 @@ export default function JWT() {
         }).then(error => {
             console.log('error:', error)
         })
-
+    }
+    const handleLogout = async () => {
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/logout`, {
+            method: 'POST',
+            credentials: 'include',
+        }).then(response => response.json()).then(data => {
+            toast.success('Logout Successfully')
+            console.log('Data in jwt test', data)
+        }).catch(error => {
+            toast.error('Logout fail')
+            console.log(error)
+        })
     }
     return (
         <main className={`h-screen grid place-content-center gap-5`}>
@@ -72,6 +83,9 @@ export default function JWT() {
 
             <Button onClick={handleRefreshToken}>
                 Refresh Token
+            </Button>
+            <Button onClick={handleLogout}>
+                Logout
             </Button>
             <ToastContainer />
         </main>

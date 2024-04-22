@@ -25,10 +25,10 @@ const initialValues: ValueTypes = {
 	last_name: "",
 };
 
-// 1- At least one upper case English letter, (?=.*[A-Z])
-// 2- At least one lower case English letter, (?=.*[a-z])
-// 3- At least one digit, (?=.*\d)
-// 4- At least one special character, (?=.*[@#$%^&*])
+//? 1- At least one upper case English letter, (?=.*[A-Z])
+//? 2- At least one lower case English letter, (?=.*[a-z])
+//? 3- At least one digit, (?=.*\d)
+//? 4- At least one special character, (?=.*[@#$%^&*])
 const strongPasswordRegex = new RegExp("^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%^&*]).{8,}$");
 
 const validationSchema = Yup.object().shape({
@@ -48,10 +48,10 @@ export default function Register() {
 	const [loading, setLoading] = useState(false);
 	const handleShowPassword = () => {
 		setShowPassword(!showPassword);
-		// Toggle password visibility
+		//? Toggle password visibility
 	};
 
-	//  handle submit
+	//?  handle submit
 	const handleSubmit = (values: ValueTypes) => {
 		setLoading(true);
 		fetch(`${BASE_URL}/api/user/register/`, {

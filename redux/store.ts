@@ -13,6 +13,7 @@ export const makeStore = () => {
             cart: cartSlice,
             userProfile: userProfileSlice,
         },
+        middleware: (getDefaultMiddleware:any) => getDefaultMiddleware().concat(ecommerceApi.middleware),
     })
 }
 

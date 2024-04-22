@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 //* Define a service using a base URL and expected endpoints
 export const ecommerceApi = createApi({
     reducerPath: 'ecommerceApi', //* The name of the slice of state that will be managed by this api
-    baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_DJANGO_API_URL}),
+    baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_DJANGO_API_URL }),
     endpoints: (builder) => ({
         //* get all products
         //*   <result type,         args type>
@@ -51,7 +51,10 @@ export const ecommerceApi = createApi({
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${accessToken}`,
                 },
+                // Adding the api middleware enables caching, invalidation, polling,
+                // and other useful features of `rtk-query`.
             }),
+
         }),
     }),
 })

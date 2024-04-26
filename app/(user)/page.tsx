@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import { fetchUserProfile } from '@/redux/features/userProfile/userProfileSlice'
 import { signIn, signOut, useSession } from 'next-auth/react'
 import Image from 'next/image'
-import { useGetProductsQuery } from '@/redux/service/ecommerce'
+import { useGetProductsQuery } from '@/redux/service/product'
 
 export default function Home() {
     // Get products with generated hook

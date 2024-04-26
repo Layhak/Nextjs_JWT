@@ -4,7 +4,7 @@ import { useSession } from 'next-auth/react'
 
 import { useRouter } from 'next/navigation'
 import React from 'react'
-import { useGetProductsQuery } from '@/redux/service/ecommerce'
+import { useGetProductsQuery } from '@/redux/service/product'
 import { CartProductType } from '@/lib/definitions'
 
 const ENDPOINT = 'https://fakestoreapi.com/products/'

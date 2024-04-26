@@ -1,6 +1,6 @@
 'use client'
 import CardComponent from '@/components/card/CardProductDetail'
-import { useGetProductByIdQuery } from '@/redux/service/ecommerce'
+import { useGetProductByIdQuery } from '@/redux/service/product'
 
 type Props = {
 	params: { id: string };

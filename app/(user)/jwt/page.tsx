@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Button } from 'flowbite-react'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { useUpdateProductMutation } from '@/redux/service/ecommerce'
+import { useUpdateProductMutation } from '@/redux/service/product'
 
 export default function JWT() {
     const [accessToken, setAccessToken] = useState('')

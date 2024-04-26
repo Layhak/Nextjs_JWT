@@ -4,7 +4,7 @@ import * as Yup from 'yup'
 import style from './styles/style.module.css'
 import { useState } from 'react'
 import { ACCESS_TOKEN, BASE_URL } from '@/lib/constants'
-import { useCreateProductMutation } from '@/redux/service/ecommerce'
+import { useCreateProductMutation } from '@/redux/service/product'
 
 type CatageoryType = {
 	name: string;

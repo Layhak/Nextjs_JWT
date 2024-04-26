@@ -1,21 +1,18 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { ecommerceApi } from '../api'
 
-//* Define a service using a base URL and expected endpoints
-export const ecommerceApi = createApi({
-    reducerPath: 'ecommerceApi', //* The name of the slice of state that will be managed by this api
-    baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_DJANGO_API_URL }),
+// Define a service using a base URL from the "ecommerceApi" and injects endpoints to it
+export const productApi = ecommerceApi.injectEndpoints({
     endpoints: (builder) => ({
-        //* get all products
-        //*   <result type,         args type>
+        // The rest of the endpoints
         getProducts: builder.query<any, { page: number; pageSize: number }>({
             query: ({ page = 1, pageSize = 10 }) =>
-                `/api/products/?page=${page}&page_size=${pageSize}`,
+                `api/products/?page=${page}&page_size=${pageSize}`,
         }),
-        //* get single product
+        // get single product
         getProductById: builder.query<any, number>({
-            query: (id) => `/api/products/${id}/`,
+            query: (id) => `api/products/${id}/`,
         }),
-        //* create a product
+        // create a product
         createProduct: builder.mutation<any, { newProduct: object, accessToken: string }>({
             query: ({ newProduct, accessToken }) => ({
                 url: '/api/products/',
@@ -27,7 +24,7 @@ export const ecommerceApi = createApi({
                 body: newProduct,
             }),
         }),
-        //* update a product
+        // update a product
         updateProduct: builder.mutation<
             any,
             { id: number; updatedProduct: object; accessToken: string }
@@ -42,7 +39,7 @@ export const ecommerceApi = createApi({
                 body: updatedProduct,
             }),
         }),
-        //* delete a product
+        // delete a product
         deleteProduct: builder.mutation<any, { id: number; accessToken: string }>({
             query: ({ id, accessToken }) => ({
                 url: `/api/products/${id}/`,
@@ -51,17 +48,16 @@ export const ecommerceApi = createApi({
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${accessToken}`,
                 },
-                // Adding the api middleware enables caching, invalidation, polling,
-                // and other useful features of `rtk-query`.
             }),
-
         }),
     }),
+    overrideExisting: false, // don't override existing hooks
 })
+// Export hooks for usage in components, which are
 export const {
     useGetProductsQuery,
     useGetProductByIdQuery,
     useCreateProductMutation,
     useUpdateProductMutation,
     useDeleteProductMutation,
-} = ecommerceApi
+} = productApi

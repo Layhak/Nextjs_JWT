@@ -4,11 +4,15 @@ import { Button } from 'flowbite-react'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useUpdateProductMutation } from '@/redux/service/product'
+import { useAppDispatch, useAppSelector } from '@/redux/hooks'
+import { selectToken, setAccessToken } from '@/redux/features/auth/authSlice'
 
 export default function JWT() {
-    const [accessToken, setAccessToken] = useState('')
+    // const [accessToken, setAccessToken] = useState('')
     const [user, setUser] = useState(null)
     const [updateProduct, { data, error, isLoading }] = useUpdateProductMutation()
+    const dispatch = useAppDispatch()
+    const accessToken = useAppSelector(selectToken)
     const handleLogin = async () => {
         const email = 'henglayhak1@gmail.com'
         const password = 'admin@123'
@@ -19,7 +23,7 @@ export default function JWT() {
             },
             body: JSON.stringify({ email, password }),
         }).then(response => response.json()).then(data => {
-            setAccessToken(data.accessToken)
+            dispatch(setAccessToken(data.accessToken))
             toast.success('Login Successfully')
             // console.log('Data in jwt test', data)
         }).catch(error => {
@@ -55,7 +59,7 @@ export default function JWT() {
             },
         ).then(response => response.json()).then(data => {
             toast.success('Refresh Successfully')
-            setAccessToken(data.accessToken)
+            dispatch(setAccessToken(data.accessToken))
             console.log('Data in refresh token', data)
         }).then(error => {
             console.log('error:', error)
@@ -82,7 +86,6 @@ export default function JWT() {
                 updatedProduct: {
                     name: 'Test  Update Product',
                 },
-                accessToken: accessToken,
             })
     }
     return (

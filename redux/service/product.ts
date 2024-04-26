@@ -14,39 +14,31 @@ export const productApi = ecommerceApi.injectEndpoints({
         }),
         // create a product
         createProduct: builder.mutation<any, { newProduct: object, accessToken: string }>({
-            query: ({ newProduct, accessToken }) => ({
+            query: ({ newProduct  }) => ({
                 url: '/api/products/',
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${accessToken}`,
-                },
+
                 body: newProduct,
             }),
         }),
         // update a product
         updateProduct: builder.mutation<
             any,
-            { id: number; updatedProduct: object; accessToken: string }
+            { id: number; updatedProduct: object}
         >({
-            query: ({ id, updatedProduct, accessToken }) => ({
+            query: ({ id, updatedProduct }) => ({
                 url: `/api/products/${id}/`,
                 method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${accessToken}`,
-                },
                 body: updatedProduct,
             }),
         }),
         // delete a product
-        deleteProduct: builder.mutation<any, { id: number; accessToken: string }>({
-            query: ({ id, accessToken }) => ({
+        deleteProduct: builder.mutation<any, { id: number}>({
+            query: ({ id }) => ({
                 url: `/api/products/${id}/`,
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: `Bearer ${accessToken}`,
                 },
             }),
         }),

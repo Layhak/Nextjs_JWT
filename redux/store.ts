@@ -3,6 +3,7 @@ import counterSlice from './features/counter/counterSlice'
 import cartSlice from './features/cart/cartSlice'
 import userProfileSlice from './features/userProfile/userProfileSlice'
 import { productApi } from '@/redux/service/product'
+import authSlice from '@/redux/features/auth/authSlice'
 //* create store
 export const makeStore = () => {
     return configureStore({
@@ -12,6 +13,7 @@ export const makeStore = () => {
             counter: counterSlice,
             cart: cartSlice,
             userProfile: userProfileSlice,
+            auth:authSlice,
         },
         middleware: (getDefaultMiddleware:any) => getDefaultMiddleware().concat(productApi.middleware),
     })

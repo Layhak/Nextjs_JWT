@@ -1,9 +1,9 @@
 "use client";
-import { ProductType } from "@/lib/definitions";
-import { useEffect, useState } from "react";
-import DataTable, { TableColumn } from "react-data-table-component";
-import { Button, Modal } from "flowbite-react";
-import Image from "next/image";
+import { ProductType } from '@/lib/definitions'
+import { useEffect, useState } from 'react'
+import DataTable, { TableColumn } from 'react-data-table-component'
+import { Modal } from 'flowbite-react'
+import Image from 'next/image'
 
 export default function Dashboard() {
 	const [products, setProducts] = useState<ProductType[]>([]);
@@ -37,7 +37,7 @@ export default function Dashboard() {
 	const columns: TableColumn<ProductType>[] = [
 		{
 			name: "Product Title",
-			selector: (row) => row.title,
+			selector: (row) => row.name,
 		},
 		{
 			name: "Price (USD)",
@@ -91,11 +91,11 @@ export default function Dashboard() {
 					<div className="space-y-6">
 						<Image
 							src={productDetail?.image || imagePlaceholder}
-							alt={productDetail?.title || "Untitle"}
+							alt={productDetail?.name || "Untitle"}
 							width={250}
 							height={300}
 						/>
-						<h3 className="text-3xl text-gray-700">{productDetail?.title || "Untitle"}</h3>
+						<h3 className="text-3xl text-gray-700">{productDetail?.name || "Untitle"}</h3>
 						<p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
 							{productDetail?.description || "No description"}
 						</p>

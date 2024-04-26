@@ -3,10 +3,12 @@ import { useState } from 'react'
 import { Button } from 'flowbite-react'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { useUpdateProductMutation } from '@/redux/service/ecommerce'
 
 export default function JWT() {
     const [accessToken, setAccessToken] = useState('')
     const [user, setUser] = useState(null)
+    const [updateProduct, { data, error, isLoading }] = useUpdateProductMutation()
     const handleLogin = async () => {
         const email = 'henglayhak1@gmail.com'
         const password = 'admin@123'
@@ -71,6 +73,18 @@ export default function JWT() {
             console.log(error)
         })
     }
+    console.log(data)
+    console.log(error)
+    const handleUpdateWithRTK = async () => {
+        updateProduct(
+            {
+                id: 321,
+                updatedProduct: {
+                    name: 'Test  Update Product',
+                },
+                accessToken: accessToken,
+            })
+    }
     return (
         <main className={`h-screen grid place-content-center gap-5`}>
             <h1 className={`capitalize text-3xl font-bold`}>Test handle login with JWT</h1>
@@ -86,6 +100,9 @@ export default function JWT() {
             </Button>
             <Button onClick={handleLogout}>
                 Logout
+            </Button>
+            <Button onClick={handleUpdateWithRTK}>
+                Update Handle with RTK
             </Button>
             <ToastContainer />
         </main>

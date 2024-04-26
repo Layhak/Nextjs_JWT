@@ -1,13 +1,13 @@
 "use client";
 
-import { Card } from "flowbite-react";
-import { CartProductType } from "@/lib/definitions";
-import { useAppDispatch } from "@/redux/hooks";
-import { addToCart } from "@/redux/features/cart/cartSlice";
+import { Card } from 'flowbite-react'
+import { CartProductType } from '@/lib/definitions'
+import { useAppDispatch } from '@/redux/hooks'
+import { addToCart } from '@/redux/features/cart/cartSlice'
 
 export default function CardProduct({
 	id,
-	title,
+	name,
 	image,
 	price,
 	onClick,
@@ -23,7 +23,7 @@ export default function CardProduct({
 		>
 			<a href="#">
 				<h5 className="line-clamp-1 text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-					{title}
+					{name}
 				</h5>
 			</a>
 			<div className="mb-5 mt-2.5 flex items-center">
@@ -86,7 +86,7 @@ export default function CardProduct({
 				</button>
 
 				<button
-					onClick={()=>dispatch(addToCart({id, title, image, price}))}
+					onClick={()=>dispatch(addToCart({id, name, image, price}))}
 					className="rounded-lg bg-cyan-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
 				>
 					Add to cart
